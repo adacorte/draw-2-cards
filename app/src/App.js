@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Busca la Zanahoria!!
         </a>
       </header>
     </div>
