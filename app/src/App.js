@@ -11,29 +11,25 @@ export default function App() {
   const [computerScore, setComputerScore] = React.useState(0)
   const [playerScore, setPlayerScore] = React.useState(0)
 
-  function handleNewDeck() {
-    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-        .then(res => res.json())
-        .then(data => {
-          setDeckId(data.deck_id)
-          setRemaining(data.remaining)
-          setPlayerScore(0)
-          setComputerScore(0)
-        })
+  async function handleNewDeck() {
+    const res = await fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    const data = await res.json()
+    setDeckId(data.deck_id)
+    setRemaining(data.remaining)
+    setPlayerScore(0)
+    setComputerScore(0)
   }
 
-  function handleDraw() {
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setImg1(data.cards[0].image)
-            setImg2(data.cards[1].image)
-            setCard1(data.cards[0].value)
-            setCard2(data.cards[1].value)
-            setRemaining(data.remaining)
-            updateScore(data.cards[0].value, data.cards[1].value)
-        })
+  async function handleDraw() {
+    const res = await fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    const data = await res.json()
+    console.log(data)
+    setImg1(data.cards[0].image)
+    setImg2(data.cards[1].image)
+    setCard1(data.cards[0].value)
+    setCard2(data.cards[1].value)
+    setRemaining(data.remaining)
+    updateScore(data.cards[0].value, data.cards[1].value)
   }
 
   function updateScore(card1, card2) {
